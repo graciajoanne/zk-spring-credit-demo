@@ -1,0 +1,45 @@
+<vlayout width="100%" style="padding: 15px;"
+         apply="org.zkoss.bind.BindComposer"
+         viewModel="@id('vm') @init('viewmodel.ApplicationViewModel')">
+
+    <label value="Daftar Pengajuan Kredit Digital" style="font-size: 16px; color: #666; display: block; margin-bottom: 15px;"/>
+
+    <div style="background-color: #007BFF; color: white; padding: 12px; font-weight: bold; font-size: 16px; text-align: center;">
+        Step 2 - Customer Information List
+    </div>
+
+    <hbox align="center" spacing="12px" width="100%" style="background-color: #FFFFFF; padding: 15px; border: 1px solid #E0E0E0; border-top: none; margin-bottom: 15px;">
+        <label value="Cari Nasabah:" style="font-weight: bold; color: #495057;" />
+        <textbox value="@bind(vm.keyword)" placeholder="Masukkan Nama" width="300px" style="padding: 6px; border: 1px solid #CCC; border-radius: 4px;" />
+        <button label="Cari" onClick="@command('search')" style="background-color: #007BFF; color: white; font-weight: bold; padding: 6px 20px; cursor: pointer; border: none; border-radius: 4px;" />
+    </hbox>
+
+    <grid model="@load(vm.applicationList)" emptyMessage="Data nasabah tidak ditemukan." mold="paging" pageSize="5" style="border: 1px solid #E0E0E0;">
+        <columns>
+            <column label="Nama Lengkap" />
+            <column label="No. Telepon" width="150px" />
+            <column label="Penghasilan" width="150px" align="right" />
+            <column label="Total Cicilan" width="150px" align="right" />
+            <column label="Tujuan Pinjaman" />
+            <column label="Status Riwayat" width="150px" align="center" />
+        </columns>
+        <template name="model" var="app">
+            <row>
+                <label value="@load(app.namaLengkap)" style="font-weight: bold; color: #212529;" />
+                <label value="@load(app.noTelp)" />
+
+                <label value="@load(app.penghasilan) @converter('formatedNumber', format='Rp #,###')" />
+
+                <label value="@load(app.totalCicilan) @converter('formatedNumber', format='Rp #,###')" />
+
+                <label value="@load(app.tujuanPinjaman)" />
+                <label value="@load(app.riwayatPembayaran)" />
+            </row>
+        </template>
+    </grid>
+
+    <vbox spacing="10px" style="margin-top: 20px;">
+        <button label="Kembali ke Form" onClick="@command('kembaliKeStepSatu')" width="150px" style="background-color: #6C757D; color: white; border: none; padding: 6px; cursor: pointer; font-weight: bold;"/>
+    </vbox>
+
+</vlayout>

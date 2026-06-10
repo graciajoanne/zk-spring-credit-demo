@@ -32,6 +32,7 @@
 					</listitem>
 				</template>
 			</listbox>
+            <button label="Ke Form" href="/form/index.zul"/>
 		</vlayout>
 	</window>
 </zk>
