@@ -22,7 +22,7 @@ public class ApplicationViewModel {
     private Application currentApplication = new Application();
 
     // KUNCI DB: Inject Bean Repository database yang kita buat di Langkah 4 kemarin
-    @WireVariable("DatabaseApplicationRepository")
+    @WireVariable("databaseAppRepository")
     private DatabaseAppRepository databaseAppRepository;
 
     @Init
